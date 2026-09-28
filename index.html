@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZaiHub | منصة الذكاء الاصطناعي والخدمات المهنية</title>
+    <!-- Google Fonts: Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <div class="brand-logo">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="brand-name">
+                    <span>ZaiHub</span>
+                    <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> منصة موثوقة</span>
+                </div>
+            </div>
+            
+            <div class="nav-right-actions">
+                <span class="secure-label"><i class="fa-solid fa-lock"></i> اتصال آمن ومشفر</span>
+                <button class="cart-btn" onclick="toggleCartModal()">
+                    <i class="fa-solid fa-cart-shopping"></i> السلة
+                    <span class="cart-badge" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace Layout -->
+    <main class="main-layout">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="search-box">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="toolSearch" placeholder="ابحث عن أداة أو قالب..." onkeyup="filterTools()">
+            </div>
+
+            <div class="menu-list" id="menuList">
+                <div class="menu-category">💼 متجر القوالب والخدمات</div>
+                <button class="menu-item store-link active" onclick="switchTool('store', this)">
+                    <i class="fa-solid fa-store"></i> متجر قوالب السيرة الذاتية
+                </button>
+                <button class="menu-item admin-link" onclick="promptAdminLogin(this)">
+                    <i class="fa-solid fa-user-shield"></i> بوابة المدير (المالك)
+                </button>
+
+                <div class="menu-category">✍️ أدوات الكتابة وصياغة المحتوى</div>
+                <button class="menu-item" onclick="switchTool('writer', this)">
+                    <i class="fa-solid fa-pen-nib"></i> صانع النصوص الذكي
+                </button>
+                <button class="menu-item" onclick="switchTool('rewriter', this)">
+                    <i class="fa-solid fa-rotate"></i> إعادة صياغة النصوص
+                </button>
+                <button class="menu-item" onclick="switchTool('summarizer', this)">
+                    <i class="fa-solid fa-compress"></i> تلخيص المقالات
+                </button>
+                <button class="menu-item" onclick="switchTool('email', this)">
+                    <i class="fa-solid fa-envelope"></i> صياغة الإيميلات الرسمية
+                </button>
+                <button class="menu-item" onclick="switchTool('cv', this)">
+                    <i class="fa-solid fa-id-card"></i> منشئ السيرة الذاتية
+                </button>
+                <button class="menu-item" onclick="switchTool('grammar', this)">
+                    <i class="fa-solid fa-spell-check"></i> التدقيق اللغوي والنحوي
+                </button>
+
+                <div class="menu-category">📢 التسويق والسوشيال ميديا</div>
+                <button class="menu-item" onclick="switchTool('social', this)">
+                    <i class="fa-solid fa-share-nodes"></i> منشورات وسائل التواصل
+                </button>
+                <button class="menu-item" onclick="switchTool('product', this)">
+                    <i class="fa-solid fa-box-open"></i> وصف المنتجات التجاري
+                </button>
+
+                <div class="menu-category">📚 التعليم والأعمال</div>
+                <button class="menu-item" onclick="switchTool('quiz', this)">
+                    <i class="fa-solid fa-clipboard-question"></i> منشئ الاختبارات والأسئلة
+                </button>
+                <button class="menu-item" onclick="switchTool('biz', this)">
+                    <i class="fa-solid fa-lightbulb"></i> مقترح أفكار المشاريع
+                </button>
+
+                <!-- قسم السياسات وشروط القبول في قوقل أدسنس -->
+                <div class="menu-category">🔒 السياسات والدعم (قوقل أدسنس)</div>
+                <button class="menu-item legal-link" onclick="switchTool('privacy', this)">
+                    <i class="fa-solid fa-user-lock"></i> سياسة الخصوصية
+                </button>
+                <button class="menu-item legal-link" onclick="switchTool('terms', this)">
+                    <i class="fa-solid fa-file-contract"></i> شروط الاستخدام
+                </button>
+                <button class="menu-item legal-link" onclick="switchTool('contact', this)">
+                    <i class="fa-solid fa-headset"></i> اتصل بنا
+                </button>
+            </div>
+        </aside>
+
+        <!-- Content Workspace Area -->
+        <section class="workspace">
+            <div class="workspace-header">
+                <span class="tool-category-tag" id="toolCategoryTag">متجر القوالب الاحترافية</span>
+                <h1 id="activeToolTitle">قوالب السيرة الذاتية المعتمدة</h1>
+                <p id="activeToolDesc">اختر قالبك المهني المصمم خصيصاً لاجتياز أنظمة الفرز الآلي (ATS). عند الشراء، سيتم تجهيز الملف فوراً بصيغة Word مع إمكانية طلب مراجعة خبرائنا.</p>
+            </div>
+
+            <!-- Dynamic Content Container -->
+            <div id="dynamicContentArea">
+                <!-- يتم التحميل ديناميكياً -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal: نافذة المعاينة -->
+    <div class="modal-overlay" id="previewModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modalTitle">معاينة القالب</h3>
+                <button class="close-modal" onclick="closePreviewModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="preview-big-box" id="modalDesc"></div>
+                <div class="expert-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <div>
+                        <strong>من يقوم بتجهيز وتعبئة السيرة الذاتية؟</strong>
+                        <p>بمجرد إتمام الطلب، يصلك الملف فوراً بصيغة <b>Word جاهز للتعبئة</b> مع دليل إرشادي مبسط. وفي حال رغبتك، يتولى فريق الخبراء لدينا مراجعة سيرتك الذاتية وتعديلها بالكامل لك!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="modalAddBtn" onclick=""><i class="fa-solid fa-cart-plus"></i> إضافة للسلة</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: نافذة سلة المشتريات -->
+    <div class="modal-overlay" id="cartModal">
+        <div class="modal-card cart-modal-box">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-cart-shopping"></i> سلة المشتريات</h3>
+                <button class="close-modal" onclick="toggleCartModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body" id="cartItemsContainer"></div>
+            
+            <div class="cart-summary-section" id="cartSummarySection">
+                <div class="discount-box">
+                    <input type="text" id="couponInput" placeholder="أدخل كود الخصم">
+                    <button onclick="applyCoupon()">تطبيق</button>
+                </div>
+                <div id="couponMsg" class="coupon-msg"></div>
+
+                <div class="totals-row">
+                    <span>المجموع الفرعي:</span>
+                    <span id="subtotalPrice">0 ر.س</span>
+                </div>
+                <div class="totals-row discount-row" id="discountRow" style="display: none;">
+                    <span>قيمة الخصم:</span>
+                    <span id="discountPrice">0 ر.س</span>
+                </div>
+                <div class="totals-row final-total">
+                    <span>المجموع الإجمالي:</span>
+                    <span id="finalPrice">0 ر.س</span>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="checkoutCart()"><i class="fa-solid fa-lock"></i> إتمام الشراء الآمن</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
